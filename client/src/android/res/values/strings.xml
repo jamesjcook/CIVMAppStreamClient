@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AppStream Example Client</string>
+    <string name="app_title">Example Client</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="connect">Connect</string>
+    <string name="appstream">Amazon AppStream</string>
+    <string name="appname">Sample Client</string>
+    <string name="address_label">Server Address</string>
+    <string name="address_label_app">Server Address</string>
+    <string name="address_hint">des.example.com</string>
+    <string name="address_hint_app">255.255.255.255</string>
+    <string name="appid_label">Application ID</string>
+    <string name="only_entitlement">Used only for entitlement service</string>
+    <string name="appid_hint">a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6</string>
+    <string name="userid_label">User ID</string>
+    <string name="userid_hint">test@example.com</string>
+    <string name="no_address">Server address is required</string>
+    <string name="invalid_address">Server address is invalid</string>
+    <string name="signin">Exit</string>
+    <string name="error">An Error Has Occurred</string>
+    <string name="app_id_required">Application ID is Required</string>
+    <string name="user_id_required">User ID is Required</string>
+    <string name="appserver">AppStream Stand-Alone Mode</string>
+    <string name="hardware">Hardware Rendering Enabled</string>
+    <string name="reconnecting">Reconnecting...</string>
+
+</resources>

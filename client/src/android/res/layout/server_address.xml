@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#0000"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:ignore="UselessParent" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_title"
+        android:minHeight="85sp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="20dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appstream"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#444" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_body" >
+
+            <LinearLayout
+                android:id="@+id/reconnect_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:focusableInTouchMode="true" 
+                android:gravity="top"
+                android:orientation="vertical" >
+                            
+	            <TextView                
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_horizontal"
+	                android:text="@string/reconnecting"
+	                android:textAppearance="?android:attr/textAppearanceLarge"
+	                android:textStyle="italic" />
+                
+                <TextView
+	                android:id="@+id/reconnect_message"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_horizontal"
+	                android:layout_marginTop="20dp"
+	                android:text="@string/reconnecting"
+	                android:textAppearance="?android:attr/textAppearanceSmall"
+	                android:textStyle="italic" />
+	                        
+            </LinearLayout>
+            
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="120dp" />
+
+            <LinearLayout
+                android:id="@+id/text_entry_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:focusableInTouchMode="true" 
+                android:gravity="top"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+                                
+                <CheckBox
+                    android:id="@+id/hardware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hardware"
+                    android:textColor="#000" />
+                                
+                <TextView
+                    android:id="@+id/address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <CheckBox
+                    android:id="@+id/appserver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appserver"
+                    android:textColor="#000" />
+                                
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/address_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textUri"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true" >
+                </EditText>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/appid_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appid_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/appid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/appid_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true" />
+
+                <View
+                    android:id="@+id/space1"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/userid_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/userid_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/userid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/userid_hint"
+                    android:imeOptions="actionGo"
+                    android:inputType="textEmailAddress|textNoSuggestions"
+                    android:lines="1"
+                    android:maxLines="1" />
+
+                <View
+                    android:id="@+id/space2"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/invalid_address"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#F00"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/connect"
+                    android:focusableInTouchMode="true" 
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:background="@drawable/button"
+                    android:inputType="none"
+                    android:text="@string/connect"
+                    android:textSize="20sp" />
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+           </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>

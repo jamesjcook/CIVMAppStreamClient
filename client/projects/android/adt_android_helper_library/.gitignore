@@ -1,0 +1,7 @@
+/bin
+local.properties
+/obj
+/gen
+/libs/armeabi*
+/jni/libs/armeabi*
+/jni/external

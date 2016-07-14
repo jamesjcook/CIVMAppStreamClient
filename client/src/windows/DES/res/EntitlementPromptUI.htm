@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            html, body {
+                width:100%;
+                height:100%;
+                margin:0;
+                position:relative;
+            }
+
+            body {
+                background:#ffffff;
+                display:table;
+
+                font-family:'Helvetica Neue', Roboto, Arial, 'Droid Sans', sans-serif;
+                font-size:14px;
+
+                -webkit-box-shadow: inset 0px 0px 100px rgba(0, 0, 0, 0.35);
+                -moz-box-shadow:    inset 0px 0px 100px rgba(0, 0, 0, 0.35);
+                box-shadow:         inset 0px 0px 100px rgba(0, 0, 0, 0.35);
+            }
+
+            .container {
+                width:100%;
+                height:100%;
+                display:table-cell;
+                vertical-align:middle;
+            }
+
+            .dialog {
+                width:250px;
+                margin:auto;
+
+                background:#ffffff;
+            }
+
+            div.header {
+                background:#eeeeee;
+                padding:20px;
+                border-bottom:1px solid #cccccc;
+                font-size:25px;
+                color:#333333;
+
+                background-color: #EEE;
+                background-image: -moz-linear-gradient(top, #eee, #e0e0e0);
+                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EEE), to(#E0E0E0));
+                background-image: -webkit-linear-gradient(top, #EEE, #E0E0E0);
+                background-image: -o-linear-gradient(top, #eee, #e0e0e0);
+                background-image: linear-gradient(to bottom, #EEE, #E0E0E0);
+                background-repeat: repeat-x;
+
+                -webkit-border-radius: 5px 5px 0px 0px;
+                -moz-border-radius: 5px 5px 0px 0px;
+                border-radius: 5px 5px 0px 0px;
+            }
+
+            div.header span {
+                font-size:12px;
+                font-weight:bold;
+                display:block;
+                color:#666666;
+            }
+
+            div.body {
+                padding:20px;
+            }
+
+            div.body > div {
+                margin-bottom:20px;
+            }
+
+            div.body label {
+                font-size:12px;
+                color:#666666;
+            }
+
+            div.body label span {
+                color:#999999;
+                font-style:italic;
+                display:block;
+            }
+
+            div.body div input {
+                margin:5px 0 0 0;
+                width:200px;
+                padding:5px;
+                border:1px solid grey;
+                font-size:12px;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            div.body .btn {
+                width:100%;
+                position:relative;
+                bottom:0;
+
+                display: block;
+                padding: 11px 0px;
+                font-size: 18px;
+                margin-top:30px;
+                line-height: 1.5em;
+                color: #444;
+                text-align: center;
+                text-decoration: none;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+                vertical-align: middle;
+                cursor: pointer;
+                background-color: #F2F2F2;
+                background-image: -moz-linear-gradient(top,#fff,#dedede);
+                background-image: -webkit-gradient(linear,0 0,0 100%,from(#FFF),to(#DEDEDE));
+                background-image: -webkit-linear-gradient(top,#FFF,#DEDEDE);
+                background-image: -o-linear-gradient(top,#fff,#dedede);
+                background-image: linear-gradient(to bottom,#FFF,#DEDEDE);
+                background-repeat: repeat-x;
+                border: 1px solid #BBB;
+                border-top-color: #CCC;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffffff',endColorStr='#ffdedede',GradientType=0);
+                -webkit-box-shadow: "0 1px 0 rgba(0, 0, 0, 0.1)";
+                -moz-box-shadow: "0 1px 0 rgba(0, 0, 0, 0.1)";
+                box-shadow: "0 1px 0 rgba(0, 0, 0, 0.1)";
+            }
+
+            div.body .btn:hover {
+                color: #444;
+                text-decoration: none;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+                background-color: #EBEBEB;
+                background-image: -moz-linear-gradient(top,#fff,#ccc);
+                background-image: -webkit-gradient(linear,0 0,0 100%,from(#FFF),to(#CCC));
+                background-image: -webkit-linear-gradient(top,#FFF,#CCC);
+                background-image: -o-linear-gradient(top,#fff,#ccc);
+                background-image: linear-gradient(to bottom,#FFF,#CCC);
+                background-position: 0 0;
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffffff',endColorStr='#ffcccccc',GradientType=0);
+            }
+
+            div.body .btn:active {
+                color: #444;
+                text-decoration: none;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+                background-color: #EBEBEB;
+                background-image: -moz-linear-gradient(bottom,#fff,#ccc);
+                background-image: -webkit-gradient(linear,0 0,0 100%,from(#CCC),to(#FFF));
+                background-image: -webkit-linear-gradient(bottom,#FFF,#CCC);
+                background-image: -o-linear-gradient(bottom,#fff,#ccc);
+                background-image: linear-gradient(to top,#FFF,#CCC);
+                background-position: 0 0;
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffffff',endColorStr='#ffcccccc',GradientType=0);
+            }
+            .error {
+                color:red;
+                font-size:12px;
+                height:26px;
+            }
+        </style>
+    </head>
+    <body ID="CWinEntitlementPromptDlg">
+        <div class="container">
+            <div class="dialog">
+                <div class="header">
+                    <span>Amazon AppStream</span> Sample Client
+                </div>
+                <div class="body">
+                    <div>
+                        <label for="IdEntitlementServerUrl">Entitlement Service or Server Address</label>
+                        <input type="text" id="IdEntitlementServerUrl" placeholder="example.com/e, or 123.123.123.123"/>
+                    </div>
+                    <div>
+                        <label for="IdApplicationId">Application ID <span>only used for entitlement service</span></label>
+                        <input type="text" id="IdApplicationId" placeholder="87GSV8G7DFSTV87GF"/>
+                    </div>
+                    <div>
+                        <label for="IdIdentityToken">User ID <span>only used for entitlement service</span></label>
+                        <input type="text" id="IdIdentityToken" placeholder="user@domain.com"/>
+                    </div>
+                    <div id="IdErrorMessage" class="error"></div>
+                    <span class="btn" id="ButtonOK">Connect</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
