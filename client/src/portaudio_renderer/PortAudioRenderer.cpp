@@ -146,10 +146,10 @@ void PortAudioRenderer::stop()
  */
 bool PortAudioRenderer::initializePortAudio()
 {
-    PaError err;
+    PaError err = -1;
     PaStreamParameters paStreamParams;
 
-    err = Pa_Initialize();
+    //err = Pa_Initialize();
     if(paNoError != err) 
     {
         LOGW("Failed to initialzie port audio %d ", err);

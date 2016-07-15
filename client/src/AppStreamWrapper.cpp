@@ -104,79 +104,85 @@ XStxResult AppStreamWrapper::init()
 
 XStxResult AppStreamWrapper::connect(std::string address)
 {
-    LOGV("connect(%s)",address.c_str());
-    memset(&mStxListener, 0, sizeof(mStxListener));
+	LOGV("connect(%s)", address.c_str());
+	memset(&mStxListener, 0, sizeof(mStxListener));
 
-    if (mClientHandle != NULL)
-    {
-        XStxClientRecycle(mClientHandle);
-    }
+	if (mClientHandle != NULL)
+	{
+		XStxClientRecycle(mClientHandle);
+	}
 
-    XStxResult result = XSTX_RESULT_OK;
-    // setup xstx client and start making the connection
-    if ((result = XStxClientCreate(mClientLibraryHandle, &mClientHandle))
-        != XSTX_RESULT_OK)
-    {
-        LOGE("Failed to create client.");
-        const char *name; const char *desc;
-        XStxResultGetInfo(result, &name, &desc);
-        LOGE("XStxClientCreate failed with: %s", name);
-        return result;
-    }
+	XStxResult result = XSTX_RESULT_OK;
+	// setup xstx client and start making the connection
+	if ((result = XStxClientCreate(mClientLibraryHandle, &mClientHandle))
+		!= XSTX_RESULT_OK)
+	{
+		LOGE("Failed to create client.");
+		const char *name; const char *desc;
+		XStxResultGetInfo(result, &name, &desc);
+		LOGE("XStxClientCreate failed with: %s", name);
+		return result;
+	}
 
-    mStxListener.mReadyFcn = &::clientReady;
-    mStxListener.mReadyCtx = this;
-    mStxListener.mReconnectingFcn = &::clientReconnecting;
-    mStxListener.mReconnectingCtx = this;
-    mStxListener.mReconnectedFcn = &::clientReconnected;
-    mStxListener.mReconnectedCtx = this;
-    mStxListener.mStoppedFcn = &::clientStopped;
-    mStxListener.mStoppedCtx = this;
-    mStxListener.mMessageReceivedFcn = &::messageReceived;
-    mStxListener.mMessageReceivedCtx = this;
-    mStxListener.mStreamQualityMetricsReceivedFcn = &::clientQoS;
-    mStxListener.mStreamQualityMetricsReceivedCtx = this;
-    mStxListener.mSetConfigurationFcn = &::receivedClientConfiguration;
-    mStxListener.mSetConfigurationCtx = this;
-    mStxListener.mSize = sizeof(mStxListener);
+	mStxListener.mReadyFcn = &::clientReady;
+	mStxListener.mReadyCtx = this;
+	mStxListener.mReconnectingFcn = &::clientReconnecting;
+	mStxListener.mReconnectingCtx = this;
+	mStxListener.mReconnectedFcn = &::clientReconnected;
+	mStxListener.mReconnectedCtx = this;
+	mStxListener.mStoppedFcn = &::clientStopped;
+	mStxListener.mStoppedCtx = this;
+	mStxListener.mMessageReceivedFcn = &::messageReceived;
+	mStxListener.mMessageReceivedCtx = this;
+	mStxListener.mStreamQualityMetricsReceivedFcn = &::clientQoS;
+	mStxListener.mStreamQualityMetricsReceivedCtx = this;
+	mStxListener.mSetConfigurationFcn = &::receivedClientConfiguration;
+	mStxListener.mSetConfigurationCtx = this;
+	mStxListener.mSize = sizeof(mStxListener);
 
-    if ((result = XStxClientSetListener2(mClientHandle, &mStxListener))
-        != XSTX_RESULT_OK)
-    {
-        LOGE("Failed to set listener");
-        const char *name; const char *desc;
-        XStxResultGetInfo(result, &name, &desc);
-        LOGE("XStxClientSetListener failed with: %s", name);
-        platformErrorMessage(true, desc);
-        return result;
-    }
+	if ((result = XStxClientSetListener2(mClientHandle, &mStxListener))
+		!= XSTX_RESULT_OK)
+	{
+		LOGE("Failed to set listener");
+		const char *name; const char *desc;
+		XStxResultGetInfo(result, &name, &desc);
+		LOGE("XStxClientSetListener failed with: %s", name);
+		platformErrorMessage(true, desc);
+		return result;
+	}
 
-    // initialize video module
-    if (!mVideoModule.initialize(mClientHandle, *mVideoRenderer))
-    {
-        LOGE("Failed to create video decoder/renderer");
-        return XSTX_RESULT_NOT_INITIALIZED_PROPERLY;
-    }
+	// initialize video module
+	if (!mVideoModule.initialize(mClientHandle, *mVideoRenderer))
+	{
+		LOGE("Failed to create video decoder/renderer");
+		return XSTX_RESULT_NOT_INITIALIZED_PROPERLY;
+	}
 
-    // initialize audio module
-    if (!mAudioModule.initialize(mClientHandle))
-    {
-        LOGE("Failed to create audio decoder/renderer");
-        return XSTX_RESULT_NOT_INITIALIZED_PROPERLY;
-    }
+	// initialize audio module
+	//if (0) 
+	if (!mAudioModule.initialize(mClientHandle))
+	{
+		LOGE("Failed to create audio decoder/renderer");
+		return XSTX_RESULT_NOT_INITIALIZED_PROPERLY;
+	}
 
-    if ((result = XStxClientSetEntitlementUrl(mClientHandle, address.c_str()))
-        != XSTX_RESULT_OK)
-    {
-        const char *name; const char *desc;
-        XStxResultGetInfo(result, &name, &desc);
-        LOGE("XStxClientSetEntitlementUrl failed with: %s", name);
-        return result;
-    }
+	if ((result = XStxClientSetEntitlementUrl(mClientHandle, address.c_str()))
+		!= XSTX_RESULT_OK)
+	{
+		const char *name; const char *desc;
+		XStxResultGetInfo(result, &name, &desc);
+		LOGE("XStxClientSetEntitlementUrl failed with: %s", name);
+		return result;
+	}
 
-    // non-blocking!
-    if ((result = XStxClientStart(mClientHandle)) != XSTX_RESULT_OK)
-    {
+	// non-blocking!
+	/* result = XStxClientStart(mClientHandle);
+	if ( (result == XSTX_RESULT_OK)
+		|| ( result = XSTX_RESULT_AUDIO_FRAME_ALLOCATOR_NULL ) ) */
+	//{
+	//} else 
+	if ((result = XStxClientStart(mClientHandle)) != XSTX_RESULT_OK)
+	{
         LOGE("Failed to start client.");
         const char *name; const char *desc;
         XStxResultGetInfo(result, &name, &desc);
@@ -503,7 +509,7 @@ void AppStreamWrapper::stop()
     LOGV("stop");
     mVideoModule.stop();
 
-    if (mAudioModule.getRenderer())
+    if ( 0 ) //if (mAudioModule.getRenderer())
     {
         LOGV("mAudioModule.getRenderer() non-null; calling stop");
         mAudioModule.getRenderer()->stop();
