@@ -18,7 +18,7 @@
 #include "AudioPipeline.h"
 #include "OpusDecoder.h"
 #include "PortAudioRenderer.h"
-//#include "DummyAudioRenderer.h"
+#include "DummyAudioRenderer.h"
 
 #undef LOG_TAG
 #define LOG_TAG "AudioPipeline"
@@ -38,13 +38,13 @@ AudioDecoder * newAudioDecoder()
 AudioRenderer *newAudioRenderer(mud::FixedSizePool<XStxRawAudioFrame> &framePool,
         XStxClientHandle clientHandle)
 {
-	
-	AudioRenderer * renderer =
-		new(std::nothrow) PortAudioRenderer(framePool, clientHandle);
 	/*
 	AudioRenderer * renderer =
+		new(std::nothrow) PortAudioRenderer(framePool, clientHandle);
+	*/
+	AudioRenderer * renderer =
 		new(std::nothrow) DummyAudioRenderer(framePool, clientHandle);
-		*/
+		
     if (!renderer)
     {
         return NULL;

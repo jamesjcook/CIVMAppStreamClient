@@ -16,6 +16,8 @@ set (OPUS_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/opus/i
 set (OPUS_LIB_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/opus/lib/${Architecture}")
 set (PORTAUDIO_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/portaudio/include")
 set (PORTAUDIO_LIB_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/portaudio/lib/${Architecture}")
+set (DUMMYAUDIO_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/dummyaudio/include")
+set (DUMMYAUDIO_LIB_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/dummyaudio/lib/${Architecture}")
 set (MS_INT_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../../../../3rdparty/windows/msinttypes")
 set (XSTX_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/../../../../include")
 set (XSTX_LIB_DIR "${PROJECT_SOURCE_DIR}/../../../../lib/windows/${Architecture}")
@@ -32,6 +34,9 @@ get_filename_component (OPUS_LIB_DIR "${OPUS_LIB_DIR}" REALPATH)
 get_filename_component (PORTAUDIO_INCLUDE_DIR "${PORTAUDIO_INCLUDE_DIR}" REALPATH)
 get_filename_component (PORTAUDIO_LIB_DIR "${PORTAUDIO_LIB_DIR}" REALPATH)
 
+get_filename_component (DUMMYAUDIO_INCLUDE_DIR "${DUMMYAUDIO_INCLUDE_DIR}" REALPATH)
+get_filename_component (DUMMYAUDIO_LIB_DIR "${DUMMYAUDIO_LIB_DIR}" REALPATH)
+
 get_filename_component (MS_INT_INCLUDE_DIR "${MS_INT_INCLUDE_DIR}" REALPATH)
 
 get_filename_component (XSTX_INCLUDE_DIR "${XSTX_INCLUDE_DIR}" REALPATH)
@@ -43,6 +48,7 @@ get_filename_component (XSTX_EXAMPLES_DIR "${XSTX_EXAMPLES_DIR}" REALPATH)
 include_directories ("${FFMPEG_INCLUDE_DIR}")
 include_directories ("${OPUS_INCLUDE_DIR}")
 include_directories ("${PORTAUDIO_INCLUDE_DIR}")
+include_directories ("${DUMMYAUDIO_INCLUDE_DIR}")
 include_directories ("${MS_INT_INCLUDE_DIR}")
 include_directories ("${XSTX_INCLUDE_DIR}")
 
@@ -57,6 +63,7 @@ include_directories ("${XSTX_EXAMPLES_MUD}")
 link_directories ("${FFMPEG_LIB_DIR}")
 link_directories ("${OPUS_LIB_DIR}")
 link_directories ("${PORTAUDIO_LIB_DIR}")
+link_directories ("${DUMMYAUDIO_LIB_DIR}")
 link_directories ("${XSTX_LIB_DIR}")
 
 
@@ -64,6 +71,7 @@ include_directories ("${STX_EXAMPLE_CLIENTS_SOURCE_DIR}")
 include_directories ("${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/opus_decoder")
 include_directories ("${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/ffmpeg_decoder")
 include_directories ("${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/portaudio_renderer")
+include_directories ("${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/dummyaudio_renderer")
 
 set (ACR_SRCS
     ${XSTX_EXAMPLES_ACR}/SimpleResultCodes.cpp
@@ -83,6 +91,7 @@ set (SRCS
     "${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/ffmpeg_decoder/H264ToYuv.cpp"
     "${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/opus_decoder/OpusDecoder.cpp"
     "${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/portaudio_renderer/PortAudioRenderer.cpp"
+    "${STX_EXAMPLE_CLIENTS_SOURCE_DIR}/dummyaudio_renderer/DummyAudioRenderer.cpp"
     )
 
 if (WIN32)
@@ -147,6 +156,7 @@ target_link_libraries (AppStreamClient XStxClientLibraryShared)
 target_link_libraries (AppStreamClient avformat avcodec swscale avutil)
 target_link_libraries (AppStreamClient celt silk_common silk_fixed silk_float opus)
 target_link_libraries (AppStreamClient portaudio_static_${Architecture})
+#target_link_libraries (AppStreamClient dummyaudio_static_${Architecture})
 
 if (WIN32)
     target_link_libraries (AppStreamClient "${DIRECTX_SDK_ROOT}/Lib/${Architecture}/d3d9.lib" "${DIRECTX_SDK_ROOT}/Lib/${Architecture}/d3dx9.lib")
